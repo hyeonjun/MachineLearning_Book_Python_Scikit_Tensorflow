@@ -1,0 +1,15 @@
+<!-- jinja2 템플릿 엔진을 사용하여 매크로 작성
+ first_app.html 파일에서 텍스트 필드를 화면에 출력하기 위해 이 파일을 임포트-->
+{% macro render_field(field) %}
+    <dt>{{ field.label }}
+    <dd>{{ field(**kwargs) | safe }}
+    {% if field.errors %}
+        <ul class=errors>
+        {% for error in field.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    </dd>
+    </dt>
+{% endmacro %}
